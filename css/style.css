@@ -2,6 +2,7 @@
 Replica della grafica (immagine in allegato) con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse;
 Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto, ricavandoli dall'array contacts qui allegato */
 
+/*General*/
 * {
     box-sizing: border-box;
     margin:0;
@@ -54,6 +55,8 @@ body{
     -o-transform:translateX(-50%);
 }
 
+/* General */
+
 .menu-contacts {
     display:flex;
     flex-direction: column;
@@ -68,16 +71,6 @@ body{
     width: 100%;
 }
 
-.messages {
-    display:flex;
-    flex-direction:column;
-    justify-content: space-between;
-    background-image: url(../img/mine.jpg);
-    width:70%;
-    height:100%;
-}
-
-
 /* Images */
 .top-user img,
 .contact-name-img img {
@@ -90,8 +83,22 @@ body{
     -o-border-radius: 50%;
 }
 
-
 /* Menu contacts*/
+
+.menu-contacts {
+    display:flex;
+    flex-direction: column;
+    width:30%;
+    height:100%;
+    border-right: 1px solid #cfcfcf;
+}
+
+.menu-contacts>div,
+.top-user,
+.write-message{
+    width: 100%;
+}
+
 .top-user {
     display: flex;
     justify-content: space-between;
@@ -107,6 +114,8 @@ body{
     padding: 5px 10px 5px 0px;
     color:#919191;
 }
+
+/* Notifications */
 .notifications {
     display:flex;
     align-items: center;
@@ -125,33 +134,30 @@ body{
     -o-border-radius: 50%;
 }
 
+/* Search contacts */
 .contacts-search{
-    position:relative;
     background-color: #F6F6F6;
 }
 .input-search {
     margin: 10px;
+    padding:5px;
     width: calc(100% - 20px);
     height: 25px;
     border-radius: 5px;
     border: 1px solid #cfcfcf;
+    background-image: url(../img/search-solid.svg);
+    background-size:15px;
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+    text-indent: 20px;
 
 }
-.contacts-search>.fa-search{
-    position:absolute;
-    left:5%;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size:15px;
-    color: #919191;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
+.input-search:focus{
+    background-image:none;
+    text-indent: 0px;
 }
-.input-search::placeholder {
-   padding-left:40px;
-}
+
+/* Contacts */
 .contacts-list{
     overflow: scroll;
 }
@@ -165,6 +171,15 @@ body{
 }
 
 /* Section Messages*/
+.messages {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    background-image: url(../img/mine.jpg);
+    width:70%;
+    height:100%;
+}
+
 .message-date {
     padding: 10px;
     color: #666666;
@@ -219,18 +234,17 @@ body{
     -o-border-radius: 5px;
 }
 
-
 .background-green {
     background-color: #DCF8C6;
     text-align: right;  
 }
-.background-green>p,
-.background-white>p {
-    padding-right: 50px;
-}
 .background-white {
     background-color: #FFFFFF;
     text-align: left;
+}
+.background-green>p,
+.background-white>p {
+    padding-right: 50px;
 }
 
 .text-align-right {

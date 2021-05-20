@@ -96,11 +96,6 @@ var app = new Vue (
 
             },
 
-            cutText: function (i) {
-                let getText = this.contact.messages[this.contact.messages.length-1].text;
-                this.contact.messages[this.contact.messages.length-1].shortText = getText.subtr(0,5);
-            }
-
            
 
         }
