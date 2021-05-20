@@ -51,16 +51,17 @@
                         </div>
                         <div class="contacts-list">
                             <ul>
-                                <li class="contact-container">
+                                <li class="contact-container"
+                                v-for="(contact, index) in contacts">
                                     <div class="contact-name-img">
-                                        <img src="img/avatar_1.jpg" alt="">
+                                        <img :src="getImage(index)" alt="">
                                         <div>
-                                            <p>Michele</p>
-                                            <p class="text-x-small">Tutto fatto!...</p>
+                                            <p>{{ contact.name }}</p>
+                                            <p class="text-x-small">{{ contact.messages[contact.messages.length-1].text.substr(0,12) }} ...</p>
                                         </div>
                                     </div>
-                                    <div class="message-date">
-                                        <p class="text-x-small">10/01/2020 16:15:15:22 </p>
+                                    <div class="message-date"> 
+                                        <p class="text-x-small"> {{ contact.messages[contact.messages.length-1].date }} </p>
                                     </div>
                                 </li>
                             </ul>
@@ -107,7 +108,7 @@
                             </div>
                             <div class="received-messages-left ">
                                 <div class="background-white">
-                                    <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
+                                    <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit amet.  </p>
                                     <div class="text-align-right">
                                         <p class="text-x-small">10/01/2020 16:15:15:22 </p>
                                     </div>
