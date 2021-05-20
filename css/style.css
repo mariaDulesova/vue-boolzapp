@@ -7,6 +7,21 @@ Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visua
     margin:0;
     padding:0
 }
+body{
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+.text-small {
+    font-size: 14px; 
+    color:#666666;
+}
+.text-x-small {
+    font-size:12px;
+}
+.text-underline {
+    text-decoration: underline;
+
+}
 .container {
     position:relative;
     width:100%;
@@ -29,8 +44,8 @@ Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visua
     left: 50%;
     top:10%;
     transform:translateX(-50%);
-    width: 70%;
-    height: 500px;
+    width: 75%;
+    height: 80%;
     background-color: white;
     -webkit-transform:translateX(-50%);
     -moz-transform:translateX(-50%);
@@ -43,13 +58,10 @@ Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visua
     flex-direction: column;
     width:30%;
     height:100%;
-    background-color: lightpink;    /*<--- DEBUG!!!!!!*/
 }
 
 .menu-contacts>div {
-    height: 50px;                     /*<--- DEBUG!!!!!!*/
     width: 100%;
-    border-bottom: 1px solid black  /*<--- DEBUG!!!!!!*/
 }
 
 .messages {
@@ -66,3 +78,85 @@ Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visua
     border: 1px solid white;  /*<--- DEBUG!!!!!!*/
     height: 50px;               /*<--- DEBUG!!!!!!*/
 }
+
+/* Images */
+.main-user img,
+.contact-name-img img {
+    width: 60px;
+    padding:10px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+
+/* Menu contacts*/
+.main-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#EDEDED;
+}
+
+.main-user-picture-name {
+    display:flex;
+    align-items: center;
+}
+.main-user-activities .fas {
+    padding: 2.5px;
+    color:#919191;
+}
+.notifications {
+    display:flex;
+    align-items: center;
+    background-color: #9DE1FE;
+}
+.notifications .fas {
+    margin:10px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: white;
+    color:#9DE1FE;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.contacts-search{
+    position:relative;
+    background-color: #F6F6F6;
+}
+.input-search {
+    margin: 5px;
+    width: calc(100% - 10px);
+    height: 25px;
+
+}
+.fa-search{
+    position:absolute;
+    left:10px;
+    top: 10px;
+    font-size:15px;
+    color: #919191;
+}
+.input-search::placeholder {
+   padding-left:40px;
+}
+
+.contact-name-img {
+    display:flex;
+    align-items:center;
+}
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+}
+.message-date {
+    padding: 10px;
+    color: #666666;
+}
+ 
