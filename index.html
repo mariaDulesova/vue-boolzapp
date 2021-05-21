@@ -18,6 +18,9 @@
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
+    <!-- DayJs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <title>Boolzapp</title>
 </head>
 <body>
@@ -78,7 +81,7 @@
                                 <img 
                                 :src = "getImage(activeIndex)"alt="User">
                                 <div>
-                                    <p> {{contacts[activeIndex].name }}</p>
+                                    <p> {{ contacts[activeIndex].name }}</p>
                                     <p class="text-x-small">Ultimo accesso oggi alle {{ getLastMessageDate(activeIndex) }}  </p>
                                 </div>
                             </div>
@@ -89,6 +92,8 @@
                             </div>
                         </div>
                         <!-- /Header - Contact -->
+
+                        <!-- Main-Chat -->
                         <div class="send-received-messages">
                             <div v-for = "(message,index) in contacts[activeIndex].messages"
                             :class="(message.status == 'sent') ? 'send-messages-right' : 'received-messages-left' ">
@@ -100,14 +105,18 @@
                                 </div>  
                             </div>
                         </div>
+                        <!-- /Main-Chatk -->
                         
 
-
+                        <!-- Footer - Send Message -->
                         <div class="write-message">
                             <i class="far fa-smile"></i>
-                            <input type="text" placeholder = "Scrivi un messaggio">
+                            <input type="text" placeholder = "Scrivi un messaggio"
+                            v-model = "newSendMessage.text"
+                            @keydown.enter = "onKeyDown">
                             <i class="fas fa-microphone"></i>  
                         </div>
+                        <!-- /Footer - Send Message -->
                     </section>
                     <!-- /Messages --> 
                 </div>

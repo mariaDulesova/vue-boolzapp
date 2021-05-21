@@ -87,9 +87,11 @@ var app = new Vue (
                     ],
                 },
             ],
-            activeIndex: 0,
-            
 
+            activeIndex: 0,
+
+            newSendMessage: { }
+        
         },
 
         methods: {
@@ -112,14 +114,30 @@ var app = new Vue (
             },
 
             getActiveContact: function(i) {
-                return this.activeIndex = i;
-                
+                return this.activeIndex = i;  
             },
-            
-            
+             
+            sendMessage: function() {
+                if (this.newSendMessage.text.trim().length>0) {
 
-           
+                    this.newSendMessage.date = dayjs().format('DD/MM/YYYY HH:mm:ss')
 
+                    this.newSendMessage.status = "sent";
+                    console.log(this.newSendMessage);
+
+                    this.contacts[this.activeIndex].messages.push(this.newSendMessage);
+
+                    this.newSendMessage = {}  
+                }
+            },
+
+            onKeyDown: function(event) {
+                this.sendMessage();
+                
+            }
+
+
+         
         }
         
     }

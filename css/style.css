@@ -4,16 +4,19 @@
     margin:0;
     padding:0
 }
+html {
+    font-size:15px;
+}
 body{
     font-family: 'Lato', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
 }
 .text-small {
-    font-size: 14px; 
+    font-size: 0.9rem; 
     color:#666666;
 }
 .text-x-small {
-    font-size:12px;
+    font-size:0.7rem;
     color:#666666;
 }
 .text-underline {
@@ -258,3 +261,10 @@ body{
     text-align: right;
 }
  
+
+/* MediaQuary */
+@media all and (max-width: 1160px) {
+    html {
+        font-size: 13px;
+    }
+}
