@@ -18,7 +18,7 @@
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
-    <title>Document</title>
+    <title>Boolzapp</title>
 </head>
 <body>
     <div class="container">
@@ -50,17 +50,19 @@
                         </div>
                         <div class="contacts-list">
                             <ul>
-                                <li class="contact-container"
-                                v-for="(contact, index) in contacts">
+                                <li class="contact-container" 
+                                v-for="(contact, index) in contacts"
+                                :class="(index == activeIndex) ? 'active' :''"
+                                @click = "getActiveContact(index)">
                                     <div class="contact-name-img">
-                                        <img :src="getImage(index)" alt="">
+                                        <img :src="getImage(index)" :alt="contact.name">
                                         <div>
                                             <p>{{ contact.name }}</p>
-                                            <p class="text-x-small">{{ contact.messages[contact.messages.length-1].text.substr(0,12) }} ...</p>
+                                            <p class="text-x-small">{{ getLastMessage(index) }}...</p>
                                         </div>
                                     </div>
                                     <div class="message-date"> 
-                                        <p class="text-x-small"> {{ contact.messages[contact.messages.length-1].date }} </p>
+                                        <p class="text-x-small"> {{ getLastMessageDate(index) }} </p>
                                     </div>
                                 </li>
                             </ul>
@@ -73,10 +75,11 @@
                         <!-- Header - Contact -->
                         <div class="top-user">
                             <div class="top-user-picture-name">
-                                <img src="img/avatar_1.jpg" alt="User">
+                                <img 
+                                :src = "getImage(activeIndex)"alt="User">
                                 <div>
-                                    <p> Michele</p>
-                                    <p class="text-x-small">Ultimo accesso oggi alle 10/01/2020 16:15:15:22 </p>
+                                    <p> {{contacts[activeIndex].name }}</p>
+                                    <p class="text-x-small">Ultimo accesso oggi alle {{ getLastMessageDate(activeIndex) }}  </p>
                                 </div>
                             </div>
                             <div class="top-user-activities">
@@ -86,34 +89,20 @@
                             </div>
                         </div>
                         <!-- /Header - Contact -->
-                        <div class="received-messages">
-                            <div class="send-messages-right ">
-                                <div class="background-green">
-                                    <p>Lorem ipsum dolor sit. </p>
+                        <div class="send-received-messages">
+                            <div v-for = "(message,index) in contacts[activeIndex].messages"
+                            :class="(message.status == 'sent') ? 'send-messages-right' : 'received-messages-left' ">
+                                <div :class="(message.status == 'sent') ? 'background-green' : 'background-white'">
+                                    <p> {{message.text}} </p>
                                     <div class="text-align-right">
-                                        <p class="text-x-small">10/01/2020 16:15:15:22 </p>
+                                        <p class="text-x-small">{{message.date}}</p>
                                     </div>
-                                </div>
-                                
-                            </div>
-                            <div class="send-messages-right ">
-                                <div class="background-green">
-                                    <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit amet. </p>
-                                    <div class="text-align-right">
-                                        <p class="text-x-small">10/01/2020 16:15:15:22 </p>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="received-messages-left ">
-                                <div class="background-white">
-                                    <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit amet.  </p>
-                                    <div class="text-align-right">
-                                        <p class="text-x-small">10/01/2020 16:15:15:22 </p>
-                                    </div>
-                                </div>
+                                </div>  
                             </div>
                         </div>
+                        
+
+
                         <div class="write-message">
                             <i class="far fa-smile"></i>
                             <input type="text" placeholder = "Scrivi un messaggio">
@@ -131,3 +120,12 @@
     <script src="js/script.js"></script>
 </body>
 </html>
+
+<!-- Milestone 1:
+Replica della grafica (immagine in allegato) con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse;
+Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto, ricavandoli dall'array contacts qui allegato  -->
+
+<!-- Milestone 2
+Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare tutti i messaggi relativi al contatto attivo all'interno del pannello della conversazione
+Click sul contatto mostra la conversazione del contatto cliccato -->
+

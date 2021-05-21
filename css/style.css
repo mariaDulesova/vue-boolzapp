@@ -1,7 +1,3 @@
-/* Milestone 1:
-Replica della grafica (immagine in allegato) con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse;
-Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto, ricavandoli dall'array contacts qui allegato */
-
 /*General*/
 * {
     box-sizing: border-box;
@@ -169,6 +165,15 @@ body{
     display: flex;
     justify-content: space-between;
 }
+.contact-container:hover {
+    background-color: rgb(252, 249, 249);
+}
+.active {
+    background-color: rgb(223, 222, 222);
+}
+.active:hover {
+    background-color: rgb(223, 222, 222);
+}
 
 /* Section Messages*/
 .messages {
@@ -185,7 +190,9 @@ body{
     color: #666666;
 }
 
-.received-messages {
+.send-received-messages {
+    height: 100%;
+    padding: 30px;
     overflow: scroll;
 }
 .write-message {
@@ -225,8 +232,9 @@ body{
 .background-green,
 .background-white {
     max-width: calc(100% - 100px);
-    margin: 10px 50px;
+    margin: 10px 0px;
     padding: 10px;
+    text-align: left; 
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -235,12 +243,10 @@ body{
 }
 
 .background-green {
-    background-color: #DCF8C6;
-    text-align: right;  
+    background-color: #DCF8C6; 
 }
 .background-white {
     background-color: #FFFFFF;
-    text-align: left;
 }
 .background-green>p,
 .background-white>p {

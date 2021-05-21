@@ -86,20 +86,45 @@ var app = new Vue (
                         }
                     ],
                 },
-            ]
+            ],
+            activeIndex: 0,
+            
 
         },
+
         methods: {
             getImage:function(i){
                 let imgUrl = this.contacts[i].avatar;
-                return `img/avatar${imgUrl}.jpg`
+                return `img/avatar${imgUrl}.jpg`;
+
+                //ES6:
+                //const {avatar} = this.contacts[i];
+                //return `img/avatar${avatar.jpg}`
 
             },
+
+            getLastMessage: function(i){
+                return this.contacts[i].messages[this.contacts[i].messages.length-1].text.substr(0,12);
+            },
+
+            getLastMessageDate: function(i) {
+                return this.contacts[i].messages[this.contacts[i].messages.length-1].date;
+            },
+
+            getActiveContact: function(i) {
+                return this.activeIndex = i;
+                
+            },
+            
+            
 
            
 
         }
+        
     }
+    
 )
 
-// .subtr(0,5) 
+
+
