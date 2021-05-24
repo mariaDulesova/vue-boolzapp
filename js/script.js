@@ -90,7 +90,9 @@ var app = new Vue (
 
             activeIndex: 0,
 
-            newSendMessage: { }
+            newSendMessage: { },
+
+            filteredName: ''
         
         },
 
@@ -118,24 +120,36 @@ var app = new Vue (
             },
              
             sendMessage: function() {
+
+                const messageDate = dayjs().format('DD/MM/YYYY HH:mm:ss');
+
                 if (this.newSendMessage.text.trim().length>0) {
 
-                    this.newSendMessage.date = dayjs().format('DD/MM/YYYY HH:mm:ss')
-
+                    this.newSendMessage.date = messageDate;
                     this.newSendMessage.status = "sent";
-                    console.log(this.newSendMessage);
-
                     this.contacts[this.activeIndex].messages.push(this.newSendMessage);
+    
+                };
+                setTimeout(() => {
+                    this.contacts[this.activeIndex].messages.push({
+                        text: "ok",
+                        date: messageDate,
+                        status: "received"
 
-                    this.newSendMessage = {}  
-                }
+                    })
+
+                }, 1000);
+
+                this.newSendMessage = {}  
+
             },
 
             onKeyDown: function(event) {
                 this.sendMessage();
                 
-            }
+            },
 
+            
 
          
         }
