@@ -52,13 +52,14 @@
                         <div class="contacts-search">
                             <input type="text" 
                             placeholder="Cerca o inizia una nuova chat" 
-                            class="input-search">
+                            class="input-search"
+                            v-model="search">
                         </div>
 
                         <div class="contacts-list">
                             <ul>
                                 <li class="contact-container" 
-                                v-for="(contact, index) in contacts"
+                                v-for="(contact, index) in filteredContacts"
                                 :class="(index == activeIndex) ? 'active' :''"
                                 @click = "getActiveContact(index)">
                                     <div class="contact-name-img">
@@ -85,7 +86,7 @@
                                 <img 
                                 :src = "getImage(activeIndex)"alt="User">
                                 <div>
-                                    <p> {{ contacts[activeIndex].name }}</p>
+                                    <p> {{ filteredContacts[activeIndex].name }}</p>
                                     <p class="text-x-small">Ultimo accesso oggi alle {{ getLastMessageDate(activeIndex) }}  </p>
                                 </div>
                             </div>
@@ -99,7 +100,7 @@
 
                         <!-- Main-Chat -->
                         <div class="send-received-messages">
-                            <div v-for = "(message,index) in contacts[activeIndex].messages"
+                            <div v-for = "(message,index) in filteredContacts[activeIndex].messages"
                             :class="(message.status == 'sent') ? 'send-messages-right' : 'received-messages-left' ">
                                 <div :class="(message.status == 'sent') ? 'background-green' : 'background-white'">
                                     <p> {{message.text}} </p>

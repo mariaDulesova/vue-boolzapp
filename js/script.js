@@ -86,19 +86,27 @@ var app = new Vue (
                         }
                     ],
                 },
+                
             ],
 
             activeIndex: 0,
 
-            newSendMessage: { },
+            newSendMessage: {},
 
-            filteredName: ''
+            search: ''
         
+        },
+        computed: {
+            filteredContacts() {
+                return this.contacts.filter(contact => {
+                    return contact.name.toLowerCase().startsWith(this.search.toLowerCase()); 
+                })
+            }
         },
 
         methods: {
             getImage:function(i){
-                let imgUrl = this.contacts[i].avatar;
+                let imgUrl = this.filteredContacts[i].avatar;  //change Filtered Contacts
                 return `img/avatar${imgUrl}.jpg`;
 
                 //ES6:
@@ -108,11 +116,11 @@ var app = new Vue (
             },
 
             getLastMessage: function(i){
-                return this.contacts[i].messages[this.contacts[i].messages.length-1].text.substr(0,12);
-            },
+                return this.filteredContacts[i].messages[this.filteredContacts[i].messages.length-1].text.substr(0,12);
+            }, //change Filtered Contacts
 
             getLastMessageDate: function(i) {
-                return this.contacts[i].messages[this.contacts[i].messages.length-1].date;
+                return this.filteredContacts[i].messages[this.filteredContacts[i].messages.length-1].date; //change Filtered Contacts
             },
 
             getActiveContact: function(i) {
@@ -127,11 +135,11 @@ var app = new Vue (
 
                     this.newSendMessage.date = messageDate;
                     this.newSendMessage.status = "sent";
-                    this.contacts[this.activeIndex].messages.push(this.newSendMessage);
+                    this.filteredContacts[this.activeIndex].messages.push(this.newSendMessage); //change Filtered Contacts
     
                 };
                 setTimeout(() => {
-                    this.contacts[this.activeIndex].messages.push({
+                    this.filteredContacts[this.activeIndex].messages.push({ //change Filtered Contacts
                         text: "ok",
                         date: messageDate,
                         status: "received"
@@ -148,6 +156,8 @@ var app = new Vue (
                 this.sendMessage();
                 
             },
+
+
 
             
 
