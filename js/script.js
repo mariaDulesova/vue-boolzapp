@@ -97,18 +97,19 @@ var app = new Vue (
         
         },
         computed: {
-            filteredContacts() {
-                return this.contacts.filter(contact => {
+            filteredContacts: function() {
+                this.activeIndex = 0;
+                return this.contacts.filter((contact) => {
                     return contact.name.toLowerCase().startsWith(this.search.toLowerCase()); 
-                })
+                })  
+                
             }
         },
 
         methods: {
             getImage:function(i){
-                let imgUrl = this.filteredContacts[i].avatar;  //change Filtered Contacts
+                let imgUrl = this.filteredContacts[i].avatar  //change Filtered Contacts
                 return `img/avatar${imgUrl}.jpg`;
-
                 //ES6:
                 //const {avatar} = this.contacts[i];
                 //return `img/avatar${avatar.jpg}`
