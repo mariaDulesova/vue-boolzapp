@@ -261,6 +261,47 @@ body{
     text-align: right;
 }
 
+.menu-dropdown {
+    position:relative;
+    text-align:right;
+    font-size: 0.7rem;
+}
+.menu-dropdown>i{
+    cursor: pointer;
+}
+
+.menu-dropdown-items {
+    position: absolute;
+    top: 75%;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    background-color: white;
+    border: 1px solid rgba(0,0,0, 0.1);
+    border-radius:  2px;
+    -webkit-border-radius:  2px;
+    -moz-border-radius:  2px;
+    -ms-border-radius:  2px;
+    -o-border-radius:  2px;
+}
+.menu-dropdown-items>span{
+    width: 125px;
+    padding: 10px;
+    font-size: 0.9rem;
+    cursor: pointer; 
+}
+
+.menu-dropdown-items>span:hover {
+    background-color: rgb(252, 249, 249)
+}
+
+
+.nodisplay{
+    display: none;
+}
+
 
  
 

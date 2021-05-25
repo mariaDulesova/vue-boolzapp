@@ -93,7 +93,11 @@ var app = new Vue (
 
             newSendMessage: {},
 
-            search: ''
+            search: '',
+
+            activeMessage: 0,
+
+            display: false
         
         },
         // computed: {
@@ -108,7 +112,7 @@ var app = new Vue (
 
         methods: {
             getImage:function(i){
-                let imgUrl = this.contacts[i].avatar  //change Filtered Contacts
+                let imgUrl = this.contacts[i].avatar  
                 return `img/avatar${imgUrl}.jpg`;
                 //ES6:
                 //const {avatar} = this.contacts[i];
@@ -118,10 +122,10 @@ var app = new Vue (
 
             getLastMessage: function(i){
                 return this.contacts[i].messages[this.contacts[i].messages.length-1].text.substr(0,12);
-            }, //change Filtered Contacts
+            }, 
 
             getLastMessageDate: function(i) {
-                return this.contacts[i].messages[this.contacts[i].messages.length-1].date; //change Filtered Contacts
+                return this.contacts[i].messages[this.contacts[i].messages.length-1].date; 
             },
 
             getActiveContact: function(i) {
@@ -136,11 +140,11 @@ var app = new Vue (
 
                     this.newSendMessage.date = messageDate;
                     this.newSendMessage.status = "sent";
-                    this.contacts[this.activeIndex].messages.push(this.newSendMessage); //change Filtered Contacts
+                    this.contacts[this.activeIndex].messages.push(this.newSendMessage); 
     
                 };
                 setTimeout(() => {
-                    this.contacts[this.activeIndex].messages.push({ //change Filtered Contacts
+                    this.contacts[this.activeIndex].messages.push({ 
                         text: "ok",
                         date: messageDate,
                         status: "received"
@@ -168,6 +172,40 @@ var app = new Vue (
                         this.contacts[i].visible = false
                     }
                 }      
+            },
+
+            toggleToDisplay: function(i) {
+
+                this.activeMessage = i;
+
+                // SHORT VERSION
+                this.display = !this.display
+
+                //LONG VERSION
+                // if(this.display == false) {
+                //     this.display = true;
+                // } else {
+                //     this.display = false
+                // }
+            },
+
+            deleteMessage: function(i){
+                this.contacts[this.activeIndex].messages.splice(i,1);
+
+                if(this.contacts[this.activeIndex].messages.length == 0) {
+                    this.contacts.splice(this.activeIndex,1)
+                    if(this.contacts.length < 1) {
+                        this.contacts.push([
+                            {
+                                name: '',
+                                avatar: '',
+                                visible: true,
+                            }
+                        ])
+                    }
+                    
+                } ;
+                this.display=false;
             }
 
         }
