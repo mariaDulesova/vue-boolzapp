@@ -96,19 +96,19 @@ var app = new Vue (
             search: ''
         
         },
-        computed: {
-            filteredContacts: function() {
-                this.activeIndex = 0;
-                return this.contacts.filter((contact) => {
-                    return contact.name.toLowerCase().startsWith(this.search.toLowerCase()); 
-                })  
+        // computed: {
+        //     filteredContacts: function() {
+        //         this.activeIndex = 0;
+        //         return this.contacts.filter((contact) => {
+        //             return contact.name.toLowerCase().includes(this.search.toLowerCase()); 
+        //         })  
                 
-            }
-        },
+        //     }
+        // },
 
         methods: {
             getImage:function(i){
-                let imgUrl = this.filteredContacts[i].avatar  //change Filtered Contacts
+                let imgUrl = this.contacts[i].avatar  //change Filtered Contacts
                 return `img/avatar${imgUrl}.jpg`;
                 //ES6:
                 //const {avatar} = this.contacts[i];
@@ -117,11 +117,11 @@ var app = new Vue (
             },
 
             getLastMessage: function(i){
-                return this.filteredContacts[i].messages[this.filteredContacts[i].messages.length-1].text.substr(0,12);
+                return this.contacts[i].messages[this.contacts[i].messages.length-1].text.substr(0,12);
             }, //change Filtered Contacts
 
             getLastMessageDate: function(i) {
-                return this.filteredContacts[i].messages[this.filteredContacts[i].messages.length-1].date; //change Filtered Contacts
+                return this.contacts[i].messages[this.contacts[i].messages.length-1].date; //change Filtered Contacts
             },
 
             getActiveContact: function(i) {
@@ -136,11 +136,11 @@ var app = new Vue (
 
                     this.newSendMessage.date = messageDate;
                     this.newSendMessage.status = "sent";
-                    this.filteredContacts[this.activeIndex].messages.push(this.newSendMessage); //change Filtered Contacts
+                    this.contacts[this.activeIndex].messages.push(this.newSendMessage); //change Filtered Contacts
     
                 };
                 setTimeout(() => {
-                    this.filteredContacts[this.activeIndex].messages.push({ //change Filtered Contacts
+                    this.contacts[this.activeIndex].messages.push({ //change Filtered Contacts
                         text: "ok",
                         date: messageDate,
                         status: "received"
@@ -158,6 +158,20 @@ var app = new Vue (
                 
             },
 
+            searchContact: function(event) {  
+                for (i=0; i < this.contacts.length; i++) {
+                    let isIncluded = this.contacts[i].name.toLowerCase().includes(this.search.toLowerCase());
+                    console.log(isIncluded);
+
+                    if (isIncluded == true) {
+                        this.contacts[i].visible = true;
+                    } else {
+                        this.contacts[i].visible = false
+                    }
+                }      
+            }
+
+            
 
 
             
