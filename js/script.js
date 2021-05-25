@@ -158,10 +158,9 @@ var app = new Vue (
                 
             },
 
-            searchContact: function(event) {  
+            searchContact: function() {  
                 for (i=0; i < this.contacts.length; i++) {
                     let isIncluded = this.contacts[i].name.toLowerCase().includes(this.search.toLowerCase());
-                    console.log(isIncluded);
 
                     if (isIncluded == true) {
                         this.contacts[i].visible = true;
@@ -171,12 +170,6 @@ var app = new Vue (
                 }      
             }
 
-            
-
-
-            
-
-         
         }
         
     }

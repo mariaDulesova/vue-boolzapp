@@ -50,20 +50,20 @@
                         </div>
 
                         <div class="contacts-search">
-                            <input type="text" 
-                            placeholder="Cerca o inizia una nuova chat" 
-                            class="input-search"
-                            v-model="search">
+                            <input type = "text" 
+                            placeholder = "Cerca o inizia una nuova chat" 
+                            class = "input-search"
+                            v-model ="search"
+                            @input = "searchContact">
                         </div>
 
                         <div class="contacts-list">
                             <ul>
                                 <li class="contact-container" 
-                                v-for="(contact, index) in contacts"
-                                :class="(index == activeIndex) ? 'active' :''"
+                                v-for = "(contact, index) in contacts"
+                                :class = "(index == activeIndex) ? 'active' :''"
                                 @click = "getActiveContact(index)"
                                 v-show = "contact.visible == true"
-                                @keyup = "searchContact()" 
                                 >
                                     <div class="contact-name-img">
                                         <img :src="getImage(index)" :alt="contact.name">
