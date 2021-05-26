@@ -194,16 +194,6 @@ var app = new Vue (
 
                 if(this.contacts[this.activeIndex].messages.length == 0) {
                     this.contacts.splice(this.activeIndex,1)
-                    if(this.contacts.length < 1) {
-                        this.contacts.push([
-                            {
-                                name: '',
-                                avatar: '',
-                                visible: true,
-                            }
-                        ])
-                    }
-                    
                 } ;
                 this.display=false;
             }
